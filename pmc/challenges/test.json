@@ -1,0 +1,34 @@
+    {
+      "name": "term-test2",
+      "description": "searching only instance",
+      "schedule": [
+        {
+          "name": "ts2-noscore",
+          "operation": "terms2_no_score",
+          "clients": 1,
+          "warmup-iterations": 10,
+          "iterations": 1000
+        },
+        {
+          "name": "ts2-score",
+          "operation": "terms2",
+          "clients": 1,
+          "warmup-iterations": 10,
+          "iterations": 1000
+        },
+        {
+          "name": "ts1",
+          "operation": "terms2",
+          "clients": 1,
+          "warmup-iterations": 10,
+          "iterations": 500
+        },
+        {
+          "name": "ts0",
+          "operation": "terms2",
+          "clients": 1,
+          "warmup-iterations": 0,
+          "iterations": 30
+        }
+      ]
+    }

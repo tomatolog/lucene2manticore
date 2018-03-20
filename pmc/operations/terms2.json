@@ -1,0 +1,40 @@
+{
+	"name": "terms2",
+	"operation-type": "search",
+	"param-source": "term-list-params",
+	"queries": [
+		{"bool": {"should": [{"match": {"body": "id"}}, {"match": {"body": "now"}}]}},
+		{"bool": {"must": [{"match": {"body": "on"}}, {"match": {"body": "november"}}]}},
+		{"bool": {"must": [{"match": {"body": "on"}}, {"match": {"body": "november"}}]}},
+		{"match_phrase": {"body": "the region"}},
+		{"match_phrase": {"body": {"query":"each other", "slop": 4}}},
+		{"bool": {"must": [{"match": {"body": "director"}}, {"match": {"body": "of"}}]}},
+		{"match_phrase": {"body": "be found"}},
+		{"bool": {"must_not": [{"match": {"body": "http"}}], "must": [{"match": {"body": "known"}}]}},
+		{"bool": {"must_not": [{"match": {"body": "known"}}], "must": [{"match": {"body": "http"}}]}},
+		{ "match_all": {} },
+		{"bool": {"must": [{"match": {"body":"physician"}}]}},
+		{ "match_phrase": { "body": "newspaper coverage" } }
+	]
+},
+{
+	"name": "terms2_no_score",
+	"operation-type": "search",
+	"param-source": "term-list-params",
+	"queries": [
+		{"bool": {"should": [{"match": {"body": "id"}}, {"match": {"body": "now"}}]}},
+		{"bool": {"must": [{"match": {"body": "on"}}, {"match": {"body": "november"}}]}},
+		{"bool": {"must": [{"match": {"body": "on"}}, {"match": {"body": "november"}}]}},
+		{"match_phrase": {"body": "the region"}},
+		{"match_phrase": {"body": {"query":"each other", "slop": 4}}},
+		{"bool": {"must": [{"match": {"body": "director"}}, {"match": {"body": "of"}}]}},
+		{"match_phrase": {"body": "be found"}},
+		{"bool": {"must_not": [{"match": {"body": "http"}}], "must": [{"match": {"body": "known"}}]}},
+		{"bool": {"must_not": [{"match": {"body": "known"}}], "must": [{"match": {"body": "http"}}]}},
+		{ "match_all": {} },
+		{"bool": {"must": [{"match": {"body":"physician"}}]}},
+		{ "match_phrase": { "body": "newspaper coverage" } }
+	],
+	"no_score":"timestamp"
+}   
+

@@ -1,0 +1,36 @@
+{% import "rally.helpers" as rally with context %}
+
+{
+  "version": 1,
+  "short-description": "Full text benchmark with academic papers from PMC",
+  "description": "Full text benchmark with academic papers from PMC",
+  "data-url": "http://benchmarks.elasticsearch.org.s3.amazonaws.com/corpora/pmc",
+  "#COMMENT": "This index definition uses very outdated syntax for backwards-compatibility. Please check the Rally docs for an more appropriate syntax",
+  "indices": [
+    {
+      "name": "wiki",
+      "body": "index.json",
+      "auto-managed": false,
+      "types": ["articles"]
+    }
+  ],
+  "corpora": [
+    {
+      "name": "wiki",
+      "base-url": "http://benchmarks.elasticsearch.org.s3.amazonaws.com/corpora/pmc",
+      "documents": [
+        {
+          "source-file": "documents.json.bz2",
+          "document-count": 100000,
+          "includes-action-and-meta-data": true
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {{ rally.collect(parts="operations/*.json") }}
+  ],
+  "challenges": [
+    {{ rally.collect(parts="challenges/*.json") }}
+  ]
+}

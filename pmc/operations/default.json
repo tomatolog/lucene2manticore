@@ -1,0 +1,78 @@
+    {
+      "name": "delete-index",
+       "operation-type": "delete-index"
+    },
+    {
+      "name": "create-index",
+      "operation-type": "create-index"
+    }, 
+    {
+      "name": "truncate-index",
+      "operation-type": "raw-request",
+      "method": "DELETE",
+      "path": "/wiki?truncate"
+    },     
+    {
+      "name": "index-append",
+      "operation-type": "bulk",
+      "bulk-size": 100
+    },
+    {
+    "name": "refresh",
+    "operation-type": "refresh"
+    },
+    {
+      "name": "force-merge",
+      "operation-type": "force-merge"
+    },
+    {
+      "name": "optimize",
+      "operation-type": "raw-request",
+      "method": "POST",
+      "path": "/wiki/_forcemerge?flush"
+    },     
+    {
+      "name": "index-stats",
+      "operation-type": "index-stats"
+    },
+    {
+      "name": "node-stats",
+      "operation-type": "node-stats"
+    },
+    {
+      "name": "full-scan",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "match_all": {}
+        }
+      }
+    },
+    {
+      "name": "term",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "term": {
+            "body": "physician"
+          }
+        }
+      }
+    },
+    {
+      "name": "phrase",
+      "operation-type": "search",
+      "body": {
+        "query": {
+          "match_phrase": {
+            "body": "newspaper coverage"
+          }
+        }
+      }
+    },
+    {
+      "name": "term-list",
+      "operation-type": "search",
+      "param-source": "term-list-params",
+      "queries": [{ "term": { "body": "not test" } }, { "term": { "body": "but best" } }]
+    }

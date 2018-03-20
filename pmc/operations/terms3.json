@@ -1,0 +1,13 @@
+{
+	"name": "terms3",
+	"operation-type": "search",
+	"param-source": "term-list-params",
+	"queries": [
+		{"bool": {"should": [{"match": {"body": "id"}}, {"match": {"body": "now"}}]}},
+        { "match_all": {} },
+		{"bool": {"must": [{"match": {"body":"physician"}}]}},
+		{ "match_phrase": { "body": "newspaper coverage" } },
+		{ "match_phrase": {"body": "the region"} }
+	]
+}    
+

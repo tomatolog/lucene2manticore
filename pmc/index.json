@@ -1,0 +1,58 @@
+{
+  "settings": {
+    "index.number_of_replicas": 0,
+    "index.number_of_shards": 1,
+    "index.analysis": {
+      "my_stop_analyzer": {
+        "type": "stop",
+        "stopwords": ["0", "1", "100", "18", "2", "2000", "24", "25", "3", "4", "5", "6", "7", "8", "9", "a", "about", "according", "after", "age", "all", "also", "american", "an", "and", "any", "are", "area", "as", "at", "be", "been", "below", "but", "by", "children", "every", "external", "family", "first", "for", "from", "had", "has", "have", "in", "including", "into", "is", "it", "its", "land", "line", "links", "living", "made", "more", "most", "new", "no", "non", "not", "of", "on", "one", "or", "other", "out", "over", "part", "people", "per", "population", "present", "references", "s", "see", "states", "that", "the", "their", "them", "there", "this", "those", "to", "together", "total", "two", "under", "united", "up", "was", "were", "when", "which", "white", "who", "with", "years"]
+      }
+    },
+    "index.max_result_window" : "100000",
+    "index.queries.cache.enabled": false,
+    "index.requests.cache.enable": false
+  },  
+  "mappings": {
+    "articles": {
+      "dynamic": "strict",
+      "_source": {
+        "enabled": false
+      },
+      "properties": {
+        "name": {
+          "type": "text"
+        },
+        "journal": {
+          "type": "text"
+        },
+        "date": {
+          "type": "keyword",
+          "store": true
+        },
+        "volume": {
+          "type": "keyword",
+          "store": true
+        },
+        "issue": {
+          "type": "keyword",
+          "store": true
+        },
+        "accession": {
+          "type": "keyword",
+          "store": true
+        },
+        "timestamp": {
+          "type": "integer",
+          "store": true
+        },
+        "pmid": {
+          "type": "integer",
+          "store": true
+        },
+        "body": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}

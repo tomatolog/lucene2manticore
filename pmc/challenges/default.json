@@ -1,0 +1,263 @@
+    {
+      "name": "indexing-searches-es",
+      "description": "Indexing and search Elastic instance",
+      "default": true,
+      "schedule": [
+        {
+          "operation": "delete-index"
+        },
+        {
+          "operation": "create-index"
+        },        
+        {
+          "operation": "index-append",
+          "warmup-iterations": 5,
+          "iterations": 1000
+        },
+        {
+          "name": "refresh-after-index",
+          "operation": "refresh",
+          "clients": 1
+        },
+        {
+          "operation": "force-merge",
+          "clients": 1
+        },
+        {
+          "name": "refresh-after-force-merge",
+          "operation": "refresh",
+          "clients": 1
+        },
+        {
+          "operation": "full-scan",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        },
+        {
+          "operation": "term",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        },
+        {
+          "operation": "phrase",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        }
+      ]
+    },
+    {
+      "name": "indexing-searches-mnt",
+      "description": "Indexing and search Manticore instance",
+      "schedule": [
+        {
+          "operation": "truncate-index"
+        },
+        {
+          "operation": "index-append",
+          "warmup-iterations": 5,
+          "iterations": 1000
+        },
+        {
+          "operation": "optimize",
+          "clients": 1
+        },
+        {
+          "operation": "full-scan",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        },
+        {
+          "operation": "term",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        },
+        {
+          "operation": "phrase",
+          "clients": 1,
+          "warmup-iterations": 50,
+          "iterations": 500
+        }
+      ]
+    },
+    {
+      "name": "indexing-es",
+      "description": "Indexing Elastic instance",
+      "schedule": [
+        {
+          "operation": "delete-index"
+        },
+        {
+          "operation": "create-index"
+        },        
+        {
+          "operation": "index-append",
+          "warmup-iterations": 5,
+          "iterations": 1000
+        },
+        {
+          "name": "refresh-after-index",
+          "operation": "refresh",
+          "clients": 1
+        },
+        {
+          "operation": "force-merge",
+          "clients": 1
+        },
+        {
+          "name": "refresh-after-force-merge",
+          "operation": "refresh",
+          "clients": 1
+        }
+      ]
+    },
+    {
+      "name": "indexing-mnt",
+      "description": "Indexing Manticore instance",
+      "schedule": [
+        {
+          "operation": "truncate-index"
+        },
+        {
+          "operation": "index-append",
+          "warmup-iterations": 5,
+          "iterations": 1000
+        },
+        {
+          "operation": "optimize",
+          "clients": 1
+        }
+      ]
+    },
+    {
+      "name": "term-concurrent",
+      "description": "concurrent search",
+      "schedule": [
+        {
+          "name": "clients=1",
+          "operation": "term-simple",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        },
+        {
+          "name": "clients=4",
+          "operation": "term-simple",
+          "clients": 4,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        },
+        {
+          "name": "clients=6",
+          "operation": "term-simple",
+          "clients": 6,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        },
+        {
+          "name": "clients=8",
+          "operation": "term-simple",
+          "clients": 8,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        },
+        {
+          "name": "clients=12",
+          "operation": "term-simple",
+          "clients": 12,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        },
+        {
+          "name": "clients=16",
+          "operation": "term-simple",
+          "clients": 16,
+          "warmup-iterations": 100,
+          "iterations": 2000
+        }
+      ]
+    },
+    {
+      "name": "test-simple",
+      "description": "searching simple",
+      "schedule": [
+        {
+          "name": "simple-short",
+          "operation": "term-simple",
+          "clients": 1,
+          "warmup-iterations": 10,
+          "iterations": 100
+        },
+        {
+          "name": "simple-half",
+          "operation": "term-simple",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 3000
+        },
+        {
+          "name": "simple-full",
+          "operation": "term-simple",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 7000
+        }
+      ]
+    },
+    {
+      "name": "test-complex",
+      "description": "searching only",
+      "schedule": [
+        {
+          "name": "complex-short",
+          "operation": "term-complex",
+          "clients": 1,
+          "warmup-iterations": 10,
+          "iterations": 100
+        },
+        {
+          "name": "complex-half",
+          "operation": "term-complex",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 6000
+        },
+        {
+          "name": "complex-full",
+          "operation": "term-complex",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 12000
+        }
+      ]
+    },
+    {
+      "name": "test-low-term",
+      "description": "searching low freq terms",
+      "schedule": [
+        {
+          "name": "low-full",
+          "operation": "term-low",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 1000
+        }
+      ]
+    },
+    {
+      "name": "test-low-term-noscore",
+      "description": "searching low freq terms",
+      "schedule": [
+        {
+          "name": "low-full",
+          "operation": "term-low-noscore",
+          "clients": 1,
+          "warmup-iterations": 100,
+          "iterations": 1000
+        }
+      ]
+    }
